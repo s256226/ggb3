@@ -34,8 +34,8 @@ void main(void)
   vec3 n = normalize((mg * nv).xyz);                // 法線ベクトル
 
   vec3 E = k1 * sh[8] * (x^2 - y^2) + k3 * sh[6] * z^2 + k4 * sh[0] - k5 * sh[6] 
-           + 2 * k1 * (sh[4] * x * y + sh[7] * x * z + sh[5] * y * z)
-           + 2 * k2 * (sh[3] * x + sh[1] * y + sh[2] * Z);
+           + 2 * k1 * n * n^-1(sh[4] + sh[7] + sh[5])
+           + 2 * k2 * n * (sh[3] + sh[1] + sh[2]);
 
   idiff = max(dot(n, l), 0.0) * kdiff * E;
 
