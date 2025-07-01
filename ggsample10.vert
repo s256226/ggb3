@@ -33,8 +33,8 @@ void main(void)
   vec3 l = normalize((pl * p.w - p * pl.w).xyz);    // 光線ベクトル
   vec3 n = normalize((mg * nv).xyz);                // 法線ベクトル
 
-  vec3 E = k1 * sh[8] * (n.x^2 - n.y^2) + k3 * sh[6] * n.z^2 + k4 * sh[0] - k5 * sh[6] 
-           + 2 * k1 * (sh[4] * n.xy + sh[7] * n.xz + sh[5] * n.yz)
+  vec3 E = k1 * sh[8] * (n.x * n.x - n.y * n.y) + k3 * sh[6] * n.z * n.z + k4 * sh[0] - k5 * sh[6] 
+           + 2 * k1 * (sh[4] * n.x * n.y + sh[7] * n.x * n.z + sh[5] * n.y * n.z)
            + 2 * k2 * (sh[3] * n.x + sh[1] * n.y + sh[2] * n.z);
 
   idiff = max(dot(n, l), 0.0) * kdiff * E;
